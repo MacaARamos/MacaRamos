@@ -28,6 +28,13 @@ nav {
   padding: 10px 20px;
   margin-bottom: 20px;
   margin-top: 20px;
+  position: sticky;
+  top: 0;
+}
+
+nav.sticking{
+  background: #fafafa;
+  opacity: 50%;
 }
 
 .nav-container {
@@ -734,6 +741,8 @@ flex-direction: row-reverse;
 .content-row.reverse-row {
 flex-direction: row-reverse;
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {

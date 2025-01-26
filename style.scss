@@ -31,6 +31,7 @@ body {
   color: $dark-gray;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 /* Mixins */
@@ -54,6 +55,9 @@ nav {
   padding: 10px 20px;
   margin-bottom: 20px;
   margin-top: 20px;
+  position: sticky;
+  top: 0;
+  
 }
 
 .nav-container {
@@ -469,4 +473,33 @@ p {
       height: 30vh;
     }
   }
-  
+
+// General styles for columns and rows
+.content-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  opacity: 0; // Initially hidden, will be shown when in view
+  transition: opacity 0.5s ease;
+}
+
+.column {
+  width: 45%; // Adjust column width as needed
+  opacity: 0; // Make elements initially invisible
+  transform: translateX(0); // Reset initial transform value
+  transition: opacity 0.5s ease, transform 0.5s ease; // Smooth transitions
+
+  // Add specific styling for images inside image columns
+  &.image-column img {
+    width: 100%; // Full width images, adjust as necessary
+    display: block;
+    border-radius: 8px;
+  }
+}
+
+
+.from-left {
+
+
+}
+
