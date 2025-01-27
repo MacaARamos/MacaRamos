@@ -30,11 +30,7 @@ nav {
   margin-top: 20px;
   position: sticky;
   top: 0;
-}
-
-nav.sticking{
-  background: #fafafa;
-  opacity: 50%;
+  transition: background-color 500ms;
 }
 
 .nav-container {
@@ -554,6 +550,14 @@ opacity: 1;
       width: 95%;
       max-width: 1400px;
       margin: 10px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .entry.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .entry:hover {
@@ -658,6 +662,24 @@ opacity: 1;
 .entry .info {
     grid-template-rows: auto auto auto auto;
 }
+
+@media (max-width: 768px) {
+  .entry {
+      grid-template-columns: 1fr; /* Makes the layout stack vertically */
+  }
+
+  .entry img:first-child {
+      height: 200px; /* Adjusts image height for smaller screens */
+  }
+}
+
+.entry {
+  width: 95%; /* Allows the entries to adapt dynamically to the screen size */
+  max-width: 1400px; /* Prevents entries from becoming excessively wide */
+}
+
+
+
 
 
 /* Book */  
