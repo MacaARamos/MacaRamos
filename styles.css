@@ -1,21 +1,576 @@
-/* Error: Missing argument $styles.
- *     ,
- * 45  | @mixin responsive($max-width, $styles) {
- *     |        =============================== declaration
- * ... |
- * 133 |     @include responsive(768px) {
- *     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ invocation
- *     '
- *   style.scss 133:5  responsive()
- *   style.scss 133:5  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Missing argument $styles.\a     \2577 \a 45  \2502  @mixin responsive($max-width, $styles) {\a     \2502         \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  declaration\a... \2502 \a 133 \2502      @include responsive(768px) {\a     \2502      ^^^^^^^^^^^^^^^^^^^^^^^^^^ invocation\a     \2575 \a   style.scss 133:5  responsive()\a   style.scss 133:5  root stylesheet";
+/* General Variables */
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+img,
+svg,
+video {
+  max-width: 100%;
+  display: inline-block;
+}
+
+body {
+  line-height: 1.6;
+  font-family: "Futura-PT", sans-serif;
+  background-color: #FAFAFA;
+  color: #2E2E2E;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Mixins */
+/* Navigation Bar */
+nav {
+  background-color: #FAFAFA;
+  color: #2E2E2E;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  position: sticky;
+  top: 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: space-between;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links li a {
+  text-decoration: none;
+  color: #2E2E2E;
+  padding: 5px 10px;
+}
+.nav-links li a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+.nav-links li .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 10px 0;
+  border-radius: 5px;
+}
+.nav-links li .dropdown-menu li {
+  width: 150px;
+  text-align: left;
+}
+.nav-links li .dropdown-menu li a {
+  display: block;
+  padding: 10px;
+  color: #2E2E2E;
+  text-decoration: none;
+}
+.nav-links li .dropdown-menu li a:hover {
+  background-color: #FAFAFA;
+  opacity: 50%;
+}
+.nav-links li .dropdown-menu:hover {
+  display: block;
+}
+
+/* Responsive Container */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+}
+.container .item {
+  flex: 1 1 calc(33.333% - 10px);
+  background: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  .container .item {
+    flex: 1 1 calc(50% - 10px);
+  }
+}
+@media (max-width: 480px) {
+  .container .item {
+    flex: 1 1 100%;
+  }
+}
+
+/* Footer Styling */
+footer {
+  background-color: #fff;
+  color: #2E2E2E;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 2px solid #444;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.footer-container::before, .footer-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #444;
+}
+.footer-container::before {
+  left: 33.33%;
+}
+.footer-container::after {
+  left: 66.66%;
+}
+.footer-container .footer-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+}
+.footer-container .footer-column + .footer-column {
+  border-left: 2px solid #444;
+}
+
+/* Responsive Design for Footer */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+  .footer-container::before, .footer-container::after {
+    display: none;
+  }
+  .footer-container .footer-column {
+    border-bottom: 2px solid #444;
+  }
+  .footer-container .footer-column:last-child {
+    border-bottom: none;
+  }
+}
+/* Typography */
+h1, h2, h3, p, .small-text {
+  color: #2E2E2E;
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.small-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Landing Page */
+.landing {
+  text-align: center;
+  background-color: #aa4465;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+
+/* Portfolio */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+.photo-grid .photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+.photo-grid .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.photo-grid .photo .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.photo-grid .photo .overlay span {
+  color: #fafafa;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.photo-grid .photo:hover img {
+  transform: scale(1.1);
+}
+.photo-grid .photo:hover .overlay {
+  opacity: 1;
+}
+
+/* Responsive Design for Portfolio */
+@media (max-width: 1024px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+/* Journal */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-image: url("../imagenes/journal.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+}
+.banner:hover {
+  opacity: 1;
+}
+.banner .banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 5rem;
+  visibility: hidden;
+}
+.banner .banner-text:hover {
+  visibility: visible;
+}
+
+/* Entries */
+.entry {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.entry.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation for the .fade-in class */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  opacity: 1; /* Fully visible */
+  animation: fadeIn 0.8s ease-out; /* Smooth fade-in effect */
+}
+
+.entry {
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.diary-entries {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+}
+.diary-entries .entry {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 20px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  transition: transform 0.3s ease, opacity 0.6s ease;
+  width: 95%;
+  max-width: 1400px;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.diary-entries .entry.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.diary-entries .entry:hover {
+  transform: scale(1.02);
+}
+.diary-entries .entry img:first-child {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.diary-entries .entry .info {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 10px;
+  align-items: start;
+}
+.diary-entries .entry .info .author-date {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+.diary-entries .entry .info .author-date .author {
+  font-weight: bold;
+}
+.diary-entries .entry .info .author-date .date {
+  color: #555;
+  font-size: 0.9rem;
+}
+.diary-entries .entry .info .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+}
+.diary-entries .entry .info .note {
+  color: #333;
+  font-size: 0.95rem;
+  text-align: left;
+  width: 100%;
+}
+.diary-entries .entry .info .actions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  gap: 25px;
+}
+.diary-entries .entry .info .actions div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* Responsive Design for Journal */
+@media (max-width: 768px) {
+  .banner {
+    height: 300px;
+  }
+  .banner-text {
+    font-size: 2rem;
+  }
+}
+/* Banner Section */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+.banner:hover {
+  opacity: 1;
+}
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 5rem;
+  visibility: hidden;
+}
+.banner:hover .banner-text {
+  visibility: visible;
+}
+
+/* Hero Section for Book */
+.hero {
+  background: url("../imagenes/hero-image.jpg") no-repeat center center/cover;
+  height: 60vh;
+  position: relative;
+}
+.hero:hover .hero-overlay {
+  display: block;
+}
+.hero:focus-within .hero-overlay {
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: none;
+  text-align: center;
+}
+
+/* Journal Banner Style */
+.journal-banner {
+  background-image: url("../imagenes/journal.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+.journal-banner:hover {
+  opacity: 1;
+}
+.journal-banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 5rem;
+  visibility: hidden;
+}
+.journal-banner:hover .banner-text {
+  visibility: visible;
+}
+
+/* Common Styles for Both Banners */
+.banner, .journal-banner {
+  display: block;
+  width: 100%;
+  height: 500px;
+}
+
+@media (max-width: 768px) {
+  .banner-text, .hero-overlay {
+    font-size: 2rem;
+  }
+  .hero {
+    height: 40vh;
+  }
+}
+@media (max-width: 480px) {
+  .banner-text, .hero-overlay {
+    font-size: 1.5rem;
+  }
+  .hero {
+    height: 30vh;
+  }
+}
+.content-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.column {
+  width: 45%;
+  opacity: 0;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.column.image-column img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.image-column {
+  position: relative;
+}
+.image-column img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: top left;
+}
+.image-column img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .image-column img:hover {
+    transform: scale(1.02);
+  }
+}
+@media (max-width: 480px) {
+  .image-column img:hover {
+    transform: none;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

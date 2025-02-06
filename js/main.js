@@ -36,4 +36,19 @@ function isInViewport(element) {
     );
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const images = document.querySelectorAll(".image-column img");
+  
+    images.forEach((image) => {
+      image.addEventListener("mouseover", () => {
+        image.style.transform = "scale(1.05)";
+        image.style.boxShadow = "0px 8px 16px rgba(0, 0, 0, 0.2)";
+      });
+  
+      image.addEventListener("mouseout", () => {
+        image.style.transform = "scale(1)";
+        image.style.boxShadow = "none";
+      });
+    });
+  });
   

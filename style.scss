@@ -42,7 +42,7 @@ body {
   flex-direction: $direction;
 }
 
-@mixin responsive($max-width, $styles) {
+@mixin responsive($max-width) {
   @media (max-width: #{$max-width}) {
     @content;
   }
@@ -380,8 +380,6 @@ p {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-
-
 .diary-entries {
   display: flex;
   flex-direction: column;
@@ -477,10 +475,6 @@ p {
     }
   }
 }
-
-
-
-
 
 /* Responsive Design for Journal */
 @include responsive(768px) {
@@ -634,3 +628,44 @@ p {
   }
 }
 
+// Book Animation
+
+// Mixin for reusable hover effect
+@mixin hover-animation {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: top left;  // This will make the image scale from the top-left corner
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Image Hover Styles
+.image-column {
+  position: relative;  // To prevent any flow issues
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    @include hover-animation;
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 768px) {
+  .image-column img {
+    &:hover {
+      transform: scale(1.02); // Slightly reduced effect for smaller screens
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .image-column img {
+    &:hover {
+      transform: none; // Disable hover animation for very small screens
+    }
+  }
+}
