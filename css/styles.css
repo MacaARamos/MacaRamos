@@ -37,6 +37,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1100;
 }
 
 .nav-links {
@@ -64,6 +66,7 @@ nav {
 .dropdown-menu {
   display: none;
   position: absolute;
+  z-index: 9999 !important;
   top: 100%;
   left: 0;
   background-color: #899878;
