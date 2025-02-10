@@ -1,54 +1,49 @@
 
-// Journal Animation
+// Scroll Animation on Book page
 
-document.addEventListener("DOMContentLoaded", () => {
-    const entries = document.querySelectorAll(".entry");
-
-    // IntersectionObserver logic
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible"); // Trigger animation
-                observer.unobserve(entry.target); // Stop observing the element
-            }
-        });
-    }, { threshold: 0.1 }); // Adjust visibility threshold if needed
-
-    // Observe each element
-    entries.forEach((entry) => observer.observe(entry));
-
-    // Force check elements already in the viewport
-    entries.forEach((entry) => {
-        if (isInViewport(entry)) {
-            entry.classList.add("visible");
+document.addEventListener("DOMContentLoaded", function () {
+    const rows = document.querySelectorAll(".content-row");
+  
+    function handleScroll() {
+      rows.forEach(row => {
+        const rowTop = row.getBoundingClientRect().top;
+        const rowBottom = row.getBoundingClientRect().bottom;
+        const windowHeight = window.innerHeight;
+  
+        if (rowTop < windowHeight * 0.9 && rowBottom > 0) {  
+          row.classList.add("visible");
+        } else {
+          row.classList.remove("visible"); // Remove when out of view
         }
+      });
+    }
+  
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run on page load to check initial visibility
+  });
+
+  //Pop-uo Form Let's work together
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById("popup-form");
+    const openBtn = document.querySelector(".cta-box button"); 
+    const closeBtn = document.querySelector(".close-btn");
+  
+    // Open Popup
+    openBtn.addEventListener("click", function () {
+      popup.classList.add("show");
     });
-});
-
-// Helper function to check if an element is in the viewport
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const images = document.querySelectorAll(".image-column img");
   
-    images.forEach((image) => {
-      image.addEventListener("mouseover", () => {
-        image.style.transform = "scale(1.05)";
-        image.style.boxShadow = "0px 8px 16px rgba(0, 0, 0, 0.2)";
-      });
+    // Close Popup
+    closeBtn.addEventListener("click", function () {
+      popup.classList.remove("show");
+    });
   
-      image.addEventListener("mouseout", () => {
-        image.style.transform = "scale(1)";
-        image.style.boxShadow = "none";
-      });
+    // Close when clicking outside the form
+    popup.addEventListener("click", function (e) {
+      if (e.target === popup) {
+        popup.classList.remove("show");
+      }
     });
   });
   
