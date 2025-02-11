@@ -47,3 +47,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
   
+  // Drone landing page animation
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.querySelector(".drone-landing");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.classList.add("visible"); // Apply fade-in effect
+            video.play(); // Start playing
+          } else {
+            video.pause(); // Pause when out of view
+          }
+        });
+      },
+      { threshold: 0.5 } // Video must be at least 50% visible
+    );
+  
+    observer.observe(video);
+  });
+  

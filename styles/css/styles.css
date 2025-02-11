@@ -368,6 +368,14 @@
   .drone-landing {
   display: block;
   margin: auto;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(20px); /* Starts slightly slower */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .drone-landing.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Moves up to normal position */
   }
   
   /* Typography */
@@ -504,7 +512,7 @@
     /* Hero Section */
   
     .hero-journal {
-      background: url('../imagenes/journal.jpg') no-repeat center center/cover;
+      background: url('') no-repeat center center/cover;
       height: 45vh;
       position: relative;
       margin-bottom: 2rem;
